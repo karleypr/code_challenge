@@ -1,0 +1,312 @@
+openapi: '3.0.3'
+info:
+  title: courseApi
+  description: API Course
+  contact:
+    email: karleyparedes86@hotmail.com
+  version: '0.1'
+servers:
+  - variables:
+      basePath:
+        default: v1
+    url: 'http://localhost:8080/v1'
+tags:
+  - name: course
+    description: Courses Operations
+paths:
+  /course:
+    post:
+      tags:
+        - course
+      summary: Create course
+      description: ''
+      operationId: createCourse
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Course'
+      responses:
+        '201':
+          description: course created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CourseResponse'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CourseResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Course not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    get:
+      tags:
+        - course
+      summary: Read course
+      description: ''
+      operationId: toListCourse
+      responses:
+        '200':
+          description: course list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CourseResponse'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CourseResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Course not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      tags:
+        - course
+      summary: Read course
+      description: ''
+      operationId: updateCourse
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CourseUpdate'
+      responses:
+        '200':
+          description: course updated
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CourseResponse'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CourseResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Course not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /course/{courseId}:
+    get:
+      tags:
+        - course
+      summary: Read course
+      description: ''
+      operationId: readCourse
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type : integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: course obtained
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CourseResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Course not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      tags:
+        - course
+      summary: Read course
+      description: ''
+      operationId: deleteCourse
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type : integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: eliminated course
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Course not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    Course:
+      type: object
+      properties:
+        name:
+          type: string
+          example: 'Ingles'
+        description:
+          type: string
+          example: 'Curso de Ingles'
+        startDate:
+          type: string
+          format: 'dd/MM/yyyy'
+          example: '2023-10-28'
+        endDate:
+          type: string
+          format: 'dd/MM/yyyy'
+          example: '2024-02-28'
+
+    CourseUpdate:
+      type: object
+      properties:
+        courseId:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: 'Ingles'
+        description:
+          type: string
+          example: 'Curso de Ingles'
+        startDate:
+          type: string
+          format: 'dd/MM/yyyy'
+          example: '2023-10-28'
+        endDate:
+          type: string
+          format: 'dd/MM/yyyy'
+          example: '2024-02-28'
+
+    CourseResponse:
+      type: object
+      properties:
+        courseId:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: 'Ingles'
+        description:
+          type: string
+          example: 'Curso de Ingles'
+        startDate:
+          type: string
+          format: 'dd/MM/yyyy'
+          example: '2023-10-28'
+        endDate:
+          type: string
+          format: 'dd/MM/yyyy'
+          example: '2024-02-28'
+
+    ErrorResponse:
+      additionalProperties: false
+      properties:
+        httpCode:
+          description: Http code status
+          type: integer
+          format: int32
+          example: 404
+        httpMessage:
+          description: Message of the error
+          type: string
+          example: Not found
+      required:
+        - httpCode
+        - httpMessage
+      description: Object that contents all the information error in a error response

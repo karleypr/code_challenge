@@ -1,0 +1,423 @@
+openapi: '3.0.3'
+info:
+  title: studentApi
+  description: API Student
+  contact:
+    email: karleyparedes86@hotmail.com
+  version: '0.1'
+servers:
+  - variables:
+      basePath:
+        default: v1
+    url: 'http://localhost:8080/v1'
+tags:
+  - name: student
+    description: Students Operations
+paths:
+  /student:
+    post:
+      tags:
+        - student
+      summary: Create student
+      description: ''
+      operationId: createStudent
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Student'
+      responses:
+        '201':
+          description: student created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentResponse'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Student not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    get:
+      tags:
+        - student
+      summary: Read student
+      description: ''
+      operationId: toListStudent
+      responses:
+        '200':
+          description: student list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentResponse'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Student not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      tags:
+        - student
+      summary: Read student
+      description: ''
+      operationId: updateStudent
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/StudentUpdate'
+      responses:
+        '200':
+          description: student updated
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentResponse'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Student not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /student/{studentId}:
+    get:
+      tags:
+        - student
+      summary: Read student
+      description: ''
+      operationId: readStudent
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type : integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: student obtained
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/StudentResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Student not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      tags:
+        - student
+      summary: Read student
+      description: ''
+      operationId: deleteStudent
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type : integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: eliminated student
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Student not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /student/inscription:
+    put:
+      tags:
+        - student
+      summary: Read student
+      description: ''
+      operationId: studentInscription
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentInscriptionUnsubscribe'
+      responses:
+        '200':
+          description: student updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/StudentResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Student not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /student/unsubscribe:
+    put:
+      tags:
+        - student
+      summary: Read student
+      description: ''
+      operationId: studentUnsubscribe
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentInscriptionUnsubscribe'
+      responses:
+        '200':
+          description: student updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/StudentResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Student not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    Student:
+      type: object
+      properties:
+        name:
+          type: string
+          example: 'Karley'
+        lastName:
+          type: string
+          example: 'Paredes'
+        birthDate:
+          type: string
+          format: 'dd/MM/yyyy'
+          example: '2023-10-28'
+
+    StudentUpdate:
+      type: object
+      properties:
+        studentId:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: 'Karley'
+        lastName:
+          type: string
+          example: 'Paredes'
+        birthDate:
+          type: string
+          format: 'dd/MM/yyyy'
+          example: '2023-10-28'
+
+    StudentResponse:
+      type: object
+      properties:
+        studentId:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: 'Karley'
+        lastName:
+          type: string
+          example: 'Paredes'
+        birthDate:
+          type: string
+          format: 'dd/MM/yyyy'
+          example: '2023-10-28'
+        coursesList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course'
+
+    StudentInscriptionUnsubscribe:
+      type: object
+      properties:
+        studentId:
+          type: integer
+          example: 1
+        courseIdList:
+          type: array
+          items:
+            type: integer
+            example: 1
+
+    Course:
+      type: object
+      properties:
+        courseId:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: 'Ingles'
+        description:
+          type: string
+          example: 'Curso de Ingles'
+        startDate:
+          type: string
+          format: 'dd/MM/yyyy'
+          example: '2023-10-28'
+        endDate:
+          type: string
+          format: 'dd/MM/yyyy'
+          example: '2024-02-28'
+
+    ErrorResponse:
+      additionalProperties: false
+      properties:
+        httpCode:
+          description: Http code status
+          type: integer
+          format: int32
+          example: 404
+        httpMessage:
+          description: Message of the error
+          type: string
+          example: Not found
+      required:
+        - httpCode
+        - httpMessage
+      description: Object that contents all the information error in a error response
